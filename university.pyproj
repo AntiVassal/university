@@ -30,17 +30,56 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="academics\admin.py" />
+    <Compile Include="academics\apps.py" />
+    <Compile Include="academics\migrations\__init__.py" />
+    <Compile Include="academics\models.py" />
+    <Compile Include="academics\tests.py" />
+    <Compile Include="academics\urls.py" />
+    <Compile Include="academics\views.py" />
+    <Compile Include="academics\__init__.py" />
     <Compile Include="manage.py" />
+    <Compile Include="students\admin.py" />
+    <Compile Include="students\apps.py" />
+    <Compile Include="students\migrations\__init__.py" />
+    <Compile Include="students\models.py" />
+    <Compile Include="students\tests.py" />
+    <Compile Include="students\urls.py" />
+    <Compile Include="students\views.py" />
+    <Compile Include="students\__init__.py" />
     <Compile Include="university\__init__.py" />
     <Compile Include="university\settings.py" />
     <Compile Include="university\urls.py" />
     <Compile Include="university\wsgi.py" />
+    <Compile Include="users\admin.py" />
+    <Compile Include="users\apps.py" />
+    <Compile Include="users\migrations\__init__.py" />
+    <Compile Include="users\models.py" />
+    <Compile Include="users\tests.py" />
+    <Compile Include="users\urls.py" />
+    <Compile Include="users\views.py" />
+    <Compile Include="users\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="academics\templates\academics\index.html" />
     <Content Include="requirements.txt" />
+    <Content Include="students\templates\students\index.html" />
+    <Content Include="users\templates\users\index.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="academics\" />
+    <Folder Include="academics\migrations\" />
+    <Folder Include="academics\templates\" />
+    <Folder Include="academics\templates\academics\" />
+    <Folder Include="students\" />
+    <Folder Include="students\migrations\" />
+    <Folder Include="students\templates\" />
+    <Folder Include="students\templates\students\" />
     <Folder Include="university\" />
+    <Folder Include="users\" />
+    <Folder Include="users\migrations\" />
+    <Folder Include="users\templates\" />
+    <Folder Include="users\templates\users\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="venv\">

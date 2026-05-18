@@ -18,14 +18,24 @@ Including another URLconf
 
 # Uncomment next two lines to enable admin:
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from django.http import HttpResponse
 
 def hello(request):
-    return HttpResponse("Hello, Backend!")
+    return HttpResponse("""
+        <h1>Welcome to University</h1>
+        <nav>
+            <a href="/academics/">Academics</a> |
+            <a href="/students/">Students</a> |
+            <a href="/users/">Users</a>
+        </nav>
+    """)
 
 urlpatterns = [
     # Uncomment the next line to enable the admin:
     path('admin/', admin.site.urls),
-    path('', hello)
+    path('', hello),
+    path('academics/', include('academics.urls')),
+    path('students/', include('students.urls')),
+    path('users/', include('users.urls')),
 ]
