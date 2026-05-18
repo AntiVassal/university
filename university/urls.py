@@ -26,7 +26,8 @@ def hello(request):
         <h1>Welcome to University</h1>
         <nav>
             <a href="/academics/courses/">Courses</a> |
-            <a href="/students/departments/">Departments</a>
+            <a href="/students/departments/">Departments</a> |
+            <a href="/users/login/">Login</a>
         </nav>
     """)
 
@@ -36,4 +37,5 @@ urlpatterns = [
     path('', hello),
     path('academics/', include('academics.urls')),
     path('students/', include('students.urls')),
+    path('users/', include('users.urls')),
 ]
