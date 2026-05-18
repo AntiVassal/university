@@ -10,9 +10,8 @@
 <body>
     <nav>
         <a href="/">Home</a>
-        <a href="{% url 'academics:home' %}">Academics</a>
-        <a href="{% url 'students:home' %}">Students</a>
-        <a href="{% url 'users:home' %}">Users</a>
+        <a href="{% url 'academics:course_list' %}">Courses</a>
+        <a href="{% url 'students:department_list' %}">Departments</a>
     </nav>
     <main>
         {% block content %}{% endblock %}

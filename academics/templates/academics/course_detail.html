@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ course.name }}</h1>
+
+    <p>Department: {{ course.department.name }}</p>
+    <p>Credits: {{ course.credits }}</p>
+
+    <h2>Enrollments</h2>
+    <ul>
+        {% for enrollment in enrollments %}
+            <li>
+                {{ enrollment.student }}
+                {% if enrollment.term %}
+                    - {{ enrollment.term }}
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No enrollments found.</li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        <a href="{% url 'academics:course_list' %}">Back to courses</a>
+    </p>
+{% endblock %}

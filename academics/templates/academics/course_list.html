@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+    <h1>Courses</h1>
+
+    {% if selected_department %}
+        <p>Filtered by department: {{ selected_department }}</p>
+    {% endif %}
+
+    <ul>
+    {% for course in courses %}
+        <li>
+            <a href="{% url 'academics:course_detail' course.pk %}">{{ course.name }}</a>
+            - {{ course.department.name }}
+            - {{ course.credits }} credits
+        </li>
+    {% empty %}
+        <li>No courses found.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

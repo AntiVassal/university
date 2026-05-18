@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Departments{% endblock %}
+
+{% block content %}
+    <h1>Departments</h1>
+
+    <ul>
+    {% for department in departments %}
+        <li>
+            <a href="{% url 'students:department_detail' department.pk %}">{{ department.name }}</a>
+            {% if department.chairperson %}
+                - {{ department.chairperson }}
+            {% else %}
+                - No chairperson
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No departments found.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

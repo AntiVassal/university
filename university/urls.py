@@ -25,9 +25,8 @@ def hello(request):
     return HttpResponse("""
         <h1>Welcome to University</h1>
         <nav>
-            <a href="/academics/">Academics</a> |
-            <a href="/students/">Students</a> |
-            <a href="/users/">Users</a>
+            <a href="/academics/courses/">Courses</a> |
+            <a href="/students/departments/">Departments</a>
         </nav>
     """)
 

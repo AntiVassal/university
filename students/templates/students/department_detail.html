@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ department.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ department.name }}</h1>
+
+    <p>
+        Chairperson:
+        {% if department.chairperson %}
+            {{ department.chairperson }}
+        {% else %}
+            No chairperson
+        {% endif %}
+    </p>
+
+    <p>
+        <a href="{% url 'students:department_list' %}">Back to departments</a>
+    </p>
+{% endblock %}

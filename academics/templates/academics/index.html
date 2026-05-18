@@ -1,9 +1,10 @@
-<html>
-<head><title></title></head>
+{% extends 'base.html' %}
 
-<body>
+{% block title %}Academics{% endblock %}
 
-{{ content }}
-
-</body>
-</html>
+{% block content %}
+    <h1>Academics</h1>
+    <nav>
+        <a href="{% url 'academics:course_list' %}">Courses</a>
+    </nav>
+{% endblock %}
