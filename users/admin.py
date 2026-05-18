@@ -7,15 +7,32 @@ from .models import CustomUser, Enrollment
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ['email', 'first_name', 'last_name', 'role', 'department', 'is_staff']
-    list_filter = ['role', 'department', 'is_staff']
+    list_display = ['email', 'first_name', 'last_name', 'role', 'department', 'is_active']
+    list_filter = ['role', 'department', 'is_active', 'is_staff']
     search_fields = ['email', 'first_name', 'last_name']
     ordering = ['email']
-    fieldsets = UserAdmin.fieldsets + (
-        ('University fields', {'fields': ('role', 'department')}),
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Personal info', {'fields': ('first_name', 'last_name')}),
+        ('University info', {'fields': ('role', 'department')}),
+        ('Permissions', {
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
+        }),
+        ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        ('Custom fields', {'fields': ('email', 'first_name', 'last_name', 'role', 'department')}),
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': (
+                'email',
+                'first_name',
+                'last_name',
+                'role',
+                'department',
+                'password1',
+                'password2',
+            ),
+        }),
     )
 
 
