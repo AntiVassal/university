@@ -1,5 +1,6 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
+from .forms import CourseForm
 from .models import Course
 
 
@@ -27,3 +28,15 @@ def course_detail(request, pk):
         'course': course,
         'enrollments': enrollments,
     })
+
+
+def course_create(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            course = form.save()
+            return redirect('academics:course_detail', pk=course.pk)
+    else:
+        form = CourseForm()
+
+    return render(request, 'academics/course_form.html', {'form': form})

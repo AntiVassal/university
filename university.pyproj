@@ -32,6 +32,9 @@
   <ItemGroup>
     <Compile Include="academics\admin.py" />
     <Compile Include="academics\apps.py" />
+    <Compile Include="academics\forms.py" />
+    <Compile Include="academics\migrations\0001_initial.py" />
+    <Compile Include="academics\migrations\0002_initial.py" />
     <Compile Include="academics\migrations\__init__.py" />
     <Compile Include="academics\models.py" />
     <Compile Include="academics\tests.py" />
@@ -41,6 +44,7 @@
     <Compile Include="manage.py" />
     <Compile Include="students\admin.py" />
     <Compile Include="students\apps.py" />
+    <Compile Include="students\migrations\0001_initial.py" />
     <Compile Include="students\migrations\__init__.py" />
     <Compile Include="students\models.py" />
     <Compile Include="students\tests.py" />
@@ -53,6 +57,7 @@
     <Compile Include="university\wsgi.py" />
     <Compile Include="users\admin.py" />
     <Compile Include="users\apps.py" />
+    <Compile Include="users\migrations\0001_initial.py" />
     <Compile Include="users\migrations\__init__.py" />
     <Compile Include="users\models.py" />
     <Compile Include="users\tests.py" />
@@ -61,6 +66,8 @@
     <Compile Include="users\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
     <Content Include="academics\templates\academics\index.html" />
     <Content Include="requirements.txt" />
     <Content Include="students\templates\students\index.html" />

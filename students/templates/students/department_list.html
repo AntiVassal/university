@@ -5,6 +5,10 @@
 {% block content %}
     <h1>Departments</h1>
 
+    <p>
+        <a href="{% url 'students:department_create' %}">Create department</a>
+    </p>
+
     <ul>
     {% for department in departments %}
         <li>

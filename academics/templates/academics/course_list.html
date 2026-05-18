@@ -5,6 +5,10 @@
 {% block content %}
     <h1>Courses</h1>
 
+    <p>
+        <a href="{% url 'academics:course_create' %}">Create course</a>
+    </p>
+
     {% if selected_department %}
         <p>Filtered by department: {{ selected_department }}</p>
     {% endif %}
