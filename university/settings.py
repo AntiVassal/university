@@ -76,6 +76,21 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'University API',
+    'DESCRIPTION': 'University management system API.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'COMPONENT_SPLIT_REQUEST': True,
+    'TAGS': [
+        {'name': 'users', 'description': 'Users & auth'},
+        {'name': 'departments'},
+        {'name': 'courses'},
+        {'name': 'students'},
+        {'name': 'enrollments'},
+    ],
+}
+
 # Middleware framework
 # https://docs.djangoproject.com/en/2.1/topics/http/middleware/
 MIDDLEWARE = [
