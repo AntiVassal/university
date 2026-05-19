@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.shortcuts import get_object_or_404, redirect, render
-from rest_framework import viewsets
+from rest_framework import filters, viewsets
 
 from .filters import CourseFilter
 from .forms import CourseForm
@@ -16,11 +18,26 @@ class MajorViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
 
 
+@extend_schema_view(
+    list=extend_schema(
+        tags=['courses'],
+        summary='List courses (filter / search / order)',
+    ),
+    retrieve=extend_schema(tags=['courses']),
+)
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.select_related('department').order_by('name')
     serializer_class = CourseSerializer
     permission_classes = [IsAdminOrReadOnly]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = CourseFilter
+    search_fields = ['name', 'department__name']
+    ordering_fields = ['name', 'credits']
+    ordering = ['name']
 
 
 def home(request):
