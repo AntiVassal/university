@@ -1,13 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import DepartmentForm
 from .models import Department
+from users.decorators import role_required
 
 
 def home(request):
     return render(request, 'students/index.html')
 
 
+@login_required(login_url='users:login')
 def department_list(request):
     departments = Department.objects.select_related('chairperson').all()
     return render(request, 'students/department_list.html', {
@@ -15,6 +18,7 @@ def department_list(request):
     })
 
 
+@login_required(login_url='users:login')
 def department_detail(request, pk):
     department = get_object_or_404(
         Department.objects.select_related('chairperson'),
@@ -25,6 +29,8 @@ def department_detail(request, pk):
     })
 
 
+@login_required(login_url='users:login')
+@role_required('admin')
 def department_create(request):
     if request.method == 'POST':
         form = DepartmentForm(request.POST)

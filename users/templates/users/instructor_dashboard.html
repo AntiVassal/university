@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Instructor Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Instructor Dashboard</h1>
+    <p>Welcome, {{ request.user }}.</p>
+    <nav>
+        <a href="{% url 'academics:course_list' %}">Courses</a>
+        <a href="{% url 'students:department_list' %}">Departments</a>
+    </nav>
+{% endblock %}

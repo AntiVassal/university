@@ -30,7 +30,7 @@ class CustomUser(AbstractUser):
 
 class Enrollment(models.Model):
     student = models.ForeignKey(
-        'students.Sudent',
+        'students.Student',
         on_delete=models.CASCADE,
         related_name='enrollments',
     )

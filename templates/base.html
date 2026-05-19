@@ -11,10 +11,12 @@
     <nav>
         <a href="/">Home</a>
         <a href="{% url 'academics:course_list' %}">Courses</a>
-        <a href="{% url 'academics:course_create' %}">New Course</a>
         <a href="{% url 'students:department_list' %}">Departments</a>
-        <a href="{% url 'students:department_create' %}">New Department</a>
         {% if user.is_authenticated %}
+            {% if user.role == 'admin' %}
+                <a href="{% url 'academics:course_create' %}">New Course</a>
+                <a href="{% url 'students:department_create' %}">New Department</a>
+            {% endif %}
             <a href="{% url 'users:dashboard' %}">Dashboard</a>
             <a href="{% url 'users:logout' %}">Logout</a>
         {% else %}

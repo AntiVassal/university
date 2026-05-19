@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
+from .decorators import role_required
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -27,7 +29,24 @@ def logout_view(request):
 
 @login_required(login_url='users:login')
 def dashboard(request):
-    return render(request, 'users/dashboard.html')
+    if not request.user.is_authenticated:
+        return redirect('users:login')
+
+    if request.user.role == 'admin':
+        return redirect('users:admin_dashboard')
+    return redirect('users:instructor_dashboard')
+
+
+@login_required(login_url='users:login')
+@role_required('admin')
+def admin_dashboard(request):
+    return render(request, 'users/admin_dashboard.html')
+
+
+@login_required(login_url='users:login')
+@role_required('instructor')
+def instructor_dashboard(request):
+    return render(request, 'users/instructor_dashboard.html')
 
 
 def home(request):

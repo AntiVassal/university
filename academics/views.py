@@ -1,13 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CourseForm
 from .models import Course
+from users.decorators import role_required
 
 
 def home(request):
     return render(request, 'academics/index.html')
 
 
+@login_required(login_url='users:login')
 def course_list(request):
     courses = Course.objects.select_related('department')
 
@@ -21,6 +24,7 @@ def course_list(request):
     })
 
 
+@login_required(login_url='users:login')
 def course_detail(request, pk):
     course = get_object_or_404(Course.objects.select_related('department'), pk=pk)
     enrollments = course.enrollments.select_related('student')
@@ -30,6 +34,8 @@ def course_detail(request, pk):
     })
 
 
+@login_required(login_url='users:login')
+@role_required('admin')
 def course_create(request):
     if request.method == 'POST':
         form = CourseForm(request.POST)

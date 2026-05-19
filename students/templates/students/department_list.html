@@ -5,9 +5,11 @@
 {% block content %}
     <h1>Departments</h1>
 
-    <p>
-        <a href="{% url 'students:department_create' %}">Create department</a>
-    </p>
+    {% if user.role == 'admin' %}
+        <p>
+            <a href="{% url 'students:department_create' %}">Create department</a>
+        </p>
+    {% endif %}
 
     <ul>
     {% for department in departments %}

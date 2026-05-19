@@ -22,12 +22,20 @@ from django.urls import include, path
 from django.http import HttpResponse
 
 def hello(request):
-    return HttpResponse("""
+    if request.user.is_authenticated:
+        user_links = """
+            <a href="/users/dashboard/">Dashboard</a> |
+            <a href="/users/logout/">Logout</a>
+        """
+    else:
+        user_links = '<a href="/users/login/">Login</a>'
+
+    return HttpResponse(f"""
         <h1>Welcome to University</h1>
         <nav>
             <a href="/academics/courses/">Courses</a> |
             <a href="/students/departments/">Departments</a> |
-            <a href="/users/login/">Login</a>
+            {user_links}
         </nav>
     """)
 

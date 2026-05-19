@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
+AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
+LOGIN_URL = '/users/login/'
 
 # Middleware framework
 # https://docs.djangoproject.com/en/2.1/topics/http/middleware/
