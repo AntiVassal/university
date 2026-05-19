@@ -9,6 +9,7 @@ inflection==0.5.1
 jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 pip==26.0.1
+psycopg==3.3.2
 PyJWT==2.12.1
 PyYAML==6.0.3
 referencing==0.37.0
