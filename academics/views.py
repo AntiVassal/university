@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from rest_framework import viewsets
 
+from .filters import CourseFilter
 from .forms import CourseForm
 from .models import Course, Major
 from .serializers import CourseSerializer, MajorSerializer
@@ -19,6 +20,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.select_related('department').order_by('name')
     serializer_class = CourseSerializer
     permission_classes = [IsAdminOrReadOnly]
+    filterset_class = CourseFilter
 
 
 def home(request):
