@@ -20,6 +20,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.http import HttpResponse
+from rest_framework.routers import DefaultRouter
+
+from academics.views import CourseViewSet, MajorViewSet
+from students.views import DepartmentViewSet, StudentViewSet
+from users.views import CustomUserViewSet, EnrollmentViewSet
+
+
+router = DefaultRouter()
+router.register('departments', DepartmentViewSet)
+router.register('majors', MajorViewSet)
+router.register('courses', CourseViewSet)
+router.register('students', StudentViewSet)
+router.register('users', CustomUserViewSet)
+router.register('enrollments', EnrollmentViewSet)
 
 def hello(request):
     if request.user.is_authenticated:
@@ -46,4 +60,6 @@ urlpatterns = [
     path('academics/', include('academics.urls')),
     path('students/', include('students.urls')),
     path('users/', include('users.urls')),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls')),
 ]

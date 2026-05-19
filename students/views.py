@@ -9,12 +9,12 @@ from users.decorators import role_required
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):
-    queryset = Department.objects.select_related('chairperson')
+    queryset = Department.objects.select_related('chairperson').order_by('name')
     serializer_class = DepartmentSerializer
 
 
 class StudentViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Student.objects.select_related('major')
+    queryset = Student.objects.select_related('major').order_by('last_name', 'first_name')
     serializer_class = StudentSerializer
 
 

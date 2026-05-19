@@ -9,12 +9,16 @@ from .serializers import CustomUserSerializer, EnrollmentSerializer
 
 
 class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = get_user_model().objects.select_related('department')
+    queryset = get_user_model().objects.select_related('department').order_by('email')
     serializer_class = CustomUserSerializer
 
 
 class EnrollmentViewSet(viewsets.ModelViewSet):
-    queryset = Enrollment.objects.select_related('student', 'course')
+    queryset = Enrollment.objects.select_related('student', 'course').order_by(
+        'student__last_name',
+        'student__first_name',
+        'course__name',
+    )
     serializer_class = EnrollmentSerializer
 
 
