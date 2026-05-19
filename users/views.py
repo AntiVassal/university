@@ -5,12 +5,14 @@ from rest_framework import viewsets
 
 from .decorators import role_required
 from .models import Enrollment
+from .permissions import IsAdminOrReadOnly
 from .serializers import CustomUserSerializer, EnrollmentSerializer
 
 
 class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = get_user_model().objects.select_related('department').order_by('email')
     serializer_class = CustomUserSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
 
 class EnrollmentViewSet(viewsets.ModelViewSet):
@@ -20,6 +22,7 @@ class EnrollmentViewSet(viewsets.ModelViewSet):
         'course__name',
     )
     serializer_class = EnrollmentSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
 
 def login_view(request):

@@ -6,16 +6,19 @@ from .forms import CourseForm
 from .models import Course, Major
 from .serializers import CourseSerializer, MajorSerializer
 from users.decorators import role_required
+from users.permissions import IsAdminOrReadOnly
 
 
 class MajorViewSet(viewsets.ModelViewSet):
     queryset = Major.objects.order_by('name')
     serializer_class = MajorSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.select_related('department').order_by('name')
     serializer_class = CourseSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
 
 def home(request):
