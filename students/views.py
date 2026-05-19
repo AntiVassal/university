@@ -6,7 +6,7 @@ from .forms import DepartmentForm
 from .models import Department, Student
 from .serializers import DepartmentSerializer, StudentSerializer
 from users.decorators import role_required
-from users.permissions import IsAdminOrReadOnly
+from users.permissions import IsAdminOrReadOnly, IsAdminRole
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):
@@ -18,7 +18,7 @@ class DepartmentViewSet(viewsets.ModelViewSet):
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.select_related('major').order_by('last_name', 'first_name')
     serializer_class = StudentSerializer
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAdminRole]
 
 
 def home(request):
