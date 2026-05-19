@@ -1,9 +1,21 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from rest_framework import viewsets
 
 from .forms import CourseForm
-from .models import Course
+from .models import Course, Major
+from .serializers import CourseSerializer, MajorSerializer
 from users.decorators import role_required
+
+
+class MajorViewSet(viewsets.ModelViewSet):
+    queryset = Major.objects.all()
+    serializer_class = MajorSerializer
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.select_related('department')
+    serializer_class = CourseSerializer
 
 
 def home(request):

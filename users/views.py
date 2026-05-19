@@ -1,8 +1,21 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from rest_framework import viewsets
 
 from .decorators import role_required
+from .models import Enrollment
+from .serializers import CustomUserSerializer, EnrollmentSerializer
+
+
+class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = get_user_model().objects.select_related('department')
+    serializer_class = CustomUserSerializer
+
+
+class EnrollmentViewSet(viewsets.ModelViewSet):
+    queryset = Enrollment.objects.select_related('student', 'course')
+    serializer_class = EnrollmentSerializer
 
 
 def login_view(request):
